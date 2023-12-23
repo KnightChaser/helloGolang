@@ -13,7 +13,7 @@ type Vertex struct {
 // We can call 'em as a receiver functions
 // Receiver functions gets parameters even prior than a function name
 func (v Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+	return math.Sqrt(math.Pow(v.X, 2) + math.Pow(v.Y, 2))
 }
 
 func main() {
