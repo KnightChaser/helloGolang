@@ -29,8 +29,8 @@ func (r Rect) perimeter() float64 { return 2 * (r.width + r.height) }
 func (c Circle) area() float64      { return math.Pi * math.Pow(c.radius, 2) }
 func (c Circle) perimeter() float64 { return 2 * math.Pi * c.radius }
 
-// The func showArea() can hold multiple shape type objects
-func showArea(shapes ...Shape) {
+// The func showShapeInformation() can hold multiple shape type objects
+func showShapeInformation(shapes ...Shape) {
 	for number, shape := range shapes {
 		// Call shape object
 		areaValue := shape.area()
@@ -43,5 +43,5 @@ func showArea(shapes ...Shape) {
 func main() {
 	exampleRectangle := Rect{10, 20}
 	exampleCircle := Circle{12}
-	showArea(exampleRectangle, exampleCircle)
+	showShapeInformation(exampleRectangle, exampleCircle)
 }
