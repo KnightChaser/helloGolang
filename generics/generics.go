@@ -4,11 +4,12 @@ package main
 
 import "fmt"
 
-// Index rreturns the index of x in s, or -1 if not found
+// Index returns the index of x in s, or -1 if not found
+// "comparable" is a generic type that able to compare
 func Index[T comparable](s []T, x T) int {
 	for i, v := range s {
 		// v and x are type T, which has the comparable
-		// constratin, so we can use == here
+		// constratints, so we can use == here
 		if v == x {
 			// return its index
 			return i
