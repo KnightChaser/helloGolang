@@ -53,11 +53,11 @@ func Crawl(URL string, depth int, fetcher Fetcher,
 	var subWaitGroup sync.WaitGroup
 	for _, URL := range URLs {
 		subWaitGroup.Add(1)
-		go func(URL string) {
+		go func(URL string) { // use anonymous function to goroutine (closure)
 			defer subWaitGroup.Done()
 			waitGroup.Add(1)
 			Crawl(URL, depth-1, fetcher, visited, waitGroup, mutex)
-		}(URL)
+		}(URL) // the parameter of the function will be...
 	}
 	subWaitGroup.Wait()
 
