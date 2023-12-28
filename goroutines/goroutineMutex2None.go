@@ -11,7 +11,6 @@ func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	data := []int{}
-	mutex := new(sync.Mutex)
 	goroutineExecutionQty := 1000
 	var wg sync.WaitGroup
 
@@ -21,9 +20,7 @@ func main() {
 		// by using defer, set WaitGroup as done right before the function finishes working
 		defer wg.Done()
 		for i := 0; i < goroutineExecutionQty; i++ {
-			mutex.Lock()
 			data = append(data, i)
-			mutex.Unlock()
 			// Gosched yields the processor, allowing other goroutines to run. It does not suspend the current goroutine,
 			// so execution resumes automatically.
 			runtime.Gosched()
@@ -34,10 +31,7 @@ func main() {
 	go func() {
 		defer wg.Done()
 		for i := 0; i < goroutineExecutionQty; i++ {
-			mutex.Lock()
 			data = append(data, i)
-			mutex.Unlock()
-
 			runtime.Gosched()
 		}
 	}()
