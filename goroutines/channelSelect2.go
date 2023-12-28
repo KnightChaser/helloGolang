@@ -2,59 +2,37 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
-func main() {
-	c1 := make(chan int)
-	c2 := make(chan string)
-
-	go func() {
-		for {
-			c1 <- 777
-			time.Sleep(100 * time.Millisecond)
+func fibonacci(c, quit chan int) {
+	x, y := 0, 1
+	// waiting multiple channels to diversify functionalities
+	for {
+		select {
+		// In case of data receiving through a channel
+		case c <- x:
+			x, y = y, x+y
+		case <-quit:
+			fmt.Println("quit")
+			return
+			// If there's default in select,
+			// Go runtime just executes default statement even if
+			// the channels aren't prepared yet.
 		}
-	}()
-
-	go func() {
-		for {
-			c2 <- "Hello Golang goroutines!"
-			time.Sleep(500 * time.Millisecond)
-		}
-	}()
-
-	// Just created a 333 millisecond long time tick
-	go func() {
-		for {
-			<-time.After(333 * time.Millisecond)
-			fmt.Printf("A 333 millisecond time tick just ticked!\n")
-		}
-	}()
-
-	go func() {
-		for {
-			select {
-			case integerValue := <-c1:
-				fmt.Printf("Channel 1 says: %d\n", integerValue)
-			case stringValue := <-c2:
-				fmt.Printf("Channel 2 says: %s\n", stringValue)
-			}
-		}
-	}()
-
-	// Let's see what happens for 10 seconds
-	time.Sleep(10 * time.Second)
+	}
 }
 
-// The output will be...
-// Channel 1 says: 777
-// Channel 2 says: Hello Golang goroutines!
-// Channel 1 says: 777
-// Channel 1 says: 777
-// Channel 1 says: 777
-// Channel 1 says: 777
-// Channel 2 says: Hello Golang goroutines!
-// Channel 1 says: 777
-// Channel 1 says: 777
-// Channel 1 says: 777
-// ...
+func main() {
+	c := make(chan int)
+	quit := make(chan int)
+	go func() {
+		for i := 0; i < 25; i++ {
+			// Inserting data to the channel
+			fmt.Println(<-c)
+		}
+		// Afer some certain tasks, send 0 to quite channel to terminate fibonacci()
+		quit <- 0
+	}()
+	// The channel is prepared. Run fibonacci() function.
+	fibonacci(c, quit)
+}
