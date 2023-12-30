@@ -34,7 +34,7 @@ func main() {
 			for index := range data.buffer {
 				data.buffer[index] = rand.Intn(100) // fill random values in the given slice
 			}
-			fmt.Println(data)
+			fmt.Printf("Goroutine #1, Data => %v\n", data)
 			data.tag = "used" // set the object tag as "used"
 			pool.Put(data)    // save object to the pool
 		}()
@@ -49,7 +49,7 @@ func main() {
 				data.buffer[index] = n // fill even numbers in the given slice
 				n += 2
 			}
-			fmt.Println(data)
+			fmt.Printf("Goroutine #2, Data => %v\n", data)
 			data.tag = "used" // set the object tag as "used"
 			pool.Put(data)    // save object to the pool
 		}()

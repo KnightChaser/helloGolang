@@ -12,7 +12,7 @@ type MyObject struct {
 
 func main() {
 	// Create a new sync.Pool
-	pool := &sync.Pool{
+	pool := sync.Pool{
 		New: func() interface{} {
 			// This function is called when a new object is needed
 			return &MyObject{}
