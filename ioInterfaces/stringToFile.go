@@ -26,7 +26,8 @@ func main() {
 	writer.Flush()                            // Flush io.NewWriter() by saving the data to the file
 
 	// Alternative
-	reader = strings.NewReader(targetString) // Read from the
+	reader = strings.NewReader(targetString) // Reader instance
+	writer = bufio.NewWriter(file)           // Writer instance
 	io.Copy(writer, reader)                  // Copy io.NewReader() instance data to the Writer instance
 	writer.Flush()                           // Save to the Writer instance
 }
