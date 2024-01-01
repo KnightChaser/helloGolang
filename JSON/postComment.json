@@ -1,0 +1,30 @@
+[
+	{
+		"ArticleId": 80007741,
+		"Author": {
+			"UserId": "kn1ght",
+			"UploadedTimestamp": "2024-01-01T00:13:44.000000665Z"
+		},
+		"Title": "Happy new year bros",
+		"Content": ":)",
+		"UpvoterIds": [
+			"exus1a1",
+			"pglogistics",
+			"akz238",
+			"rhd777",
+			"phdor1research"
+		],
+		"Comments": [
+			{
+				"UserId": "exus1a1",
+				"Content": "Happy apple pie!",
+				"UploadedTimestamp": "2024-01-01T00:14:17.000000444Z"
+			},
+			{
+				"UserId": "talul4h",
+				"Content": "Come to my house tomorrow evening",
+				"UploadedTimestamp": "2024-01-01T00:15:03.000000111Z"
+			}
+		]
+	}
+]
