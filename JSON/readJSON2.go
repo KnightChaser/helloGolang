@@ -29,4 +29,8 @@ func main() {
 	fmt.Printf("%s@%s:%d (PW: %s)\n", credential.Username, credential.Hostname, credential.Port, credential.Password)
 	fmt.Printf("Raw JSON: %v\n", credential)
 
+	// Just pretty print
+	prettierData, _ := json.MarshalIndent(credential, "", "	")
+	fmt.Printf("Prettier JSON: %v\n", string(prettierData))
+
 }
